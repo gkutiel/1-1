@@ -46,19 +46,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     var p = newProblem()
 
-    function start() {
-        i = 0;
-        view.textContent = p.txt
-        answer.focus()
-        updateCounter()
-    }
-
+    var startTime
     answer.addEventListener('keyup', () => {
         const val = parseInt(answer.value)
         if (val !== p.answer) return
         answer.value = ''
-        if (++i >= 100) {
+        if (++i === 1) {
+            startTime = new Date().getTime()
+        }
+        if (++i >= 3) {
             view.textContent = 'Well Done !!!'
+            const delta = new Date().getTime() - startTime
+            const min = parseInt(delta / 60000)
+            const sec = parseInt((delta - 60000 * min) / 1000)
+            console.log(delta)
+            document.getElementById('time').innerText = `${min}:${sec < 10 ? '0' + sec : sec}`
             return
         }
 
@@ -67,5 +69,8 @@ document.addEventListener('DOMContentLoaded', () => {
         updateCounter()
     })
 
-    start()
+    i = 0;
+    view.textContent = p.txt
+    answer.focus()
+    updateCounter()
 })
