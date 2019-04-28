@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (++i === 1) {
             startTime = new Date().getTime()
         }
-        if (++i >= 3) {
+        if (++i >= 100) {
             view.textContent = 'Well Done !!!'
             const delta = new Date().getTime() - startTime
             const min = parseInt(delta / 60000)
