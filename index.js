@@ -50,11 +50,14 @@ document.addEventListener('DOMContentLoaded', () => {
     answer.addEventListener('keyup', () => {
         const val = parseInt(answer.value)
         if (val !== p.answer) return
+
         answer.value = ''
-        if (++i === 1) {
+        i++
+
+        if (i === 1)
             startTime = new Date().getTime()
-        }
-        if (++i >= 100) {
+
+        if (i >= 100) {
             view.textContent = 'Well Done !!!'
             const delta = new Date().getTime() - startTime
             const min = parseInt(delta / 60000)
